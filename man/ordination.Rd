@@ -58,7 +58,7 @@ arguments, including graphical parameters of ordination object in vegan, passed 
 }
 }
 \details{
-The function wrapped several functions in 'vegan' package to quickly have a diagnostic ordination for your data. For better performance and more custom controls on plotting, please use the corresponding 'vegan' functions (Oksanen et al, 2013).
+The function wrapped several functions in 'vegan' package to quickly have a diagnostic ordination for your data. For better performance and more custom controls on plotting, please use the corresponding functions in the package 'vegan' (Oksanen et al, 2013).
 }
 \references{
 Oksanen J, Blanchet FG, Kindt R, Legendre P, Minchin PR, O'Hara RB et al (2013). vegan: Community Ecology Package. R package version 2.0-7. http://CRAN.R-project.org/package=vegan.

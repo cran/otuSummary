@@ -1,13 +1,13 @@
 contrib <- function(otutab, siteInCol=TRUE, taxhead=NULL, threshold = 1, percent=FALSE, check="rare", write=FALSE, plot=FALSE, ...) {
   if (!siteInCol) {
     message("Site headers in columns, will be transposed")
-    otutab = typeConvert(otutab=as.data.frame(t(otutab)),taxhead = taxhead)
+    otutab = typeConvert(otutab=data.frame(t(otutab),stringsAsFactors = FALSE),taxhead = taxhead)
   }
   if (!is.null(taxhead)){
     message("The taxonomy column will be not used in calculating the Bray contribution")
     otutab = otutab[,-match(taxhead, colnames(otutab))]
   }
-  otutab = as.data.frame(t(otutab))
+  otutab = data.frame(t(otutab),stringsAsFactors = FALSE)
   if(!percent) {relabund <- sweep(otutab,1,rowSums(otutab),"/")*100
   } else {relabund = otutab}
   if (grepl(check,"R|rare")) {

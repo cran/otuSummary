@@ -2,7 +2,7 @@ rareBiosphere <- function(otutab, siteInCol = TRUE, taxhead= NULL, percent=FALSE
   if(percent) stop("This function only work for OTUs with absolute reads!")
 
   if(!siteInCol){
-    otutab <- typeConvert(otutab=as.data.frame(t(otutab)),taxhead = taxhead)}
+    otutab <- typeConvert(otutab= data.frame(t(otutab),stringsAsFactors = FALSE),taxhead = taxhead)}
   if(!is.null(taxhead)) {
     data <- otutab[,which(colnames(otutab) != taxhead)]
     tax  <- otutab[,which(colnames(otutab) == taxhead)]

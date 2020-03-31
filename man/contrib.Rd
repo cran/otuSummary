@@ -64,8 +64,10 @@ Sizhong Yang <yanglzu@163.com>
 
 \examples{
 data(otuqiime)
+
 result <- contrib(otutab = otuqiime, siteInCol = TRUE, taxhead = "taxonomy",
     threshold = 1, percent = FALSE, check = "abund", plot = FALSE)
+
 names(result)
 head(result)
 }

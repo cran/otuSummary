@@ -1,19 +1,11 @@
-export(alphaDiversity, bplot, contrib, matrixConvert, ordination, otuReport, pbray,
-       rareBiosphere, subOTU, typeConvert)
+export(alphaDiversity, contrib, matrixConvert, ordination, otuReport, otuCollap,
+       pbray, rareBiosphere, subOTU, typeConvert)
 import("vegan")
-import("reldist")
-import("fossil")
-import("reldist")
 importFrom("reshape2", "melt")
-importFrom("fossil", "chao1","chao2")
-importFrom("reldist", "gini")
 importFrom("vegan", "vegdist", "rda", "cca", "envfit", "scores", "metaMDS",
-           "specnumber","diversity")
+           "specnumber","diversity","estimateR")
 importFrom("grDevices", "dev.copy2pdf", "rainbow")
-importFrom("graphics", "abline", "arrows", "axis", "barplot", "box",
-           "boxplot", "legend", "locator", "par", "plot", "points",
-           "text", "title")
+importFrom("graphics", "abline", "arrows", "boxplot", "legend",
+                "locator", "plot", "points", "text")
 importFrom("stats", "as.dist", "weights")
 importFrom("utils", "type.convert", "write.table")
-
-

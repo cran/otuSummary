@@ -6,7 +6,7 @@ ordination <- function(otutab, env=NULL, SiteInRow=TRUE, percent=TRUE, mySite=NU
   message("For constained ordination, ordtype options c('c_rda','c_cca','c_nmds')")
   message('For quick check only, please use original vegan functions for better plots')
   message(rep('=', 70))
-  if(!SiteInRow) otutab <- typeConvert(otutab=as.data.frame(t(otutab)),taxhead = NULL)
+  if(!SiteInRow) otutab <- typeConvert(otutab=data.frame(t(otutab),stringsAsFactors = FALSE),taxhead = NULL)
   if(!percent) otutab <- sweep(otutab, 1, rowSums(otutab),"/")*100
   my.col = colChoose(mySite)
   pchx = pchChoose(mySite)

@@ -2,10 +2,10 @@
 \alias{subOTU}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Subset the OTU table
+Subset a OTU table
 }
 \description{
-This function subset the OTU table according to the specified threshold of mean relative abundance.
+This function subset a OTU table according to the specified threshold of mean relative abundance.
 }
 \usage{
 subOTU(otutab, siteInCol = TRUE, taxhead = NULL, percent = TRUE, choose = "rare",
@@ -42,7 +42,7 @@ Logical, whether the output OTU table will be written out when running this func
 }
 }
 \details{
-The function will subset the OTU table to abundant (choose="abundant") or rare biosphere (choose="rare") according to the given relative abundance threshold of rare biosphere (Lynch and Neufeld, 2015). It will also keep the whole community without subsetting, if choose="all". The output could be relative abundance (outype="Relabund") or absolute counts (outype="counts"). If sort is TRUE, the output result will be sorted by the descending order of mean relative abundance across samples.
+The function will subset the OTU table to abundant (choose = "abundant") or rare biosphere (choose = "rare") according to the given relative abundance threshold of rare biosphere (Lynch and Neufeld, 2015). It will also keep the whole community without subsetting, if choose = "all". The output could be relative abundance (outype = "Relabund") or absolute counts (outype = "counts"). If sort is TRUE, the output result will be sorted by the descending order of mean relative abundance across samples.
 }
 \value{
 This function will return an OTU table (data frame) according to the specified arguments.

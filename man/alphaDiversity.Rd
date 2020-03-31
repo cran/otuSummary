@@ -9,18 +9,18 @@ This function will calculate the alpha diversity indices for the total, abundant
 }
 \usage{
 alphaDiversity(otutab, siteInCol = FALSE, taxhead = NULL, threshold = 1,
-    percent = TRUE, write = FALSE, ...)
+    percent = FALSE, write = FALSE, ...)
 }
 %- maybe also "usage" for other objects documented here.
 \arguments{
   \item{otutab}{
-A OTU table of microbial community, which can contain a taxonomic column (if siteInCol) or row (if site in rows). The OTU table can be given in numeric counts or in relative abundance.
+A OTU table of microbial community, which can contain a taxonomic column (if siteInCol) or row (if site in rows). The OTU table should be given in numeric (integer) counts.
 }
   \item{siteInCol}{
 Logical, if "TRUE", the OTU table contains samples in columns and taxa in rows. By default in this function, the siteInCol is FALSE, meaning the samples in rows.
 }
   \item{taxhead}{
-Character, specify the header of taxonomy. By default this argument is NULL.
+Character, specify the header of taxonomy if there is a taxonomic column in your data. By default this argument is NULL.
 }
   \item{threshold}{
 Numeric, the threshold of relative abundance upon which the rare biosphere will be subset.
@@ -36,7 +36,8 @@ arguments to be passed to write.table().
 }
 }
 \details{
-The rare biosphere is defined by the relative abundance cutoffs (which is the "threshold" argument in this function) (Lynch and Neufeld, 2015). This function call the functions "specnumber", "diversity" from package 'vegan' (Oksanen et al, 2013), "chao1" and "chao2" from package 'fossil' (Vavrek, 2011) and the "gini" function from package 'reldist' (http://www.stat.ucla.edu/~handcock/RelDist).
+The rare biosphere is defined by the relative abundance cutoffs (which is the "threshold" argument in this function) (Lynch and Neufeld, 2015). This function call the functions "specnumber", "diversity" and 'estimateR' from package 'vegan' (Oksanen et al, 2013), and the "gini" function from package 'reldist' (http://www.stat.ucla.edu/~handcock/RelDist). The function 'gini' from the package 'reldist' was extracted and this function can be correctly run without package dependency problem if you did not install this package. However, if you use the 'Gini' index result from this wrapped function, please cite the original package 'reldist'.
+In addition, please use the OTU table with integers to calculate alpha diversity.
 }
 \value{
 The function will return a list of length 3, including indices of observed, shannon, simpson, invsimpson, chao1, chao2, evenness and Gini.
@@ -50,7 +51,8 @@ Lynch MDJ, Neufeld JD (2015). Ecology and exploration of the rare biosphere. Nat
 
 Oksanen J, Blanchet FG, Kindt R, Legendre P, Minchin PR, O'Hara RB et al (2013). vegan: Community Ecology Package. R package version 2.0-7. http://CRAN.R-project.org/package=vegan.
 
-Vavrek MJ (2011). fossil: Palaeoecological and palaeogeographical analysis tools. Palaeontol Electron 14:1T. http://palaeo-electronica.org/2011_1/238/index.html.
+Handcock MS (2016). Relative distribution methods. Version 1.6-6. Project home page at http:
+//www.stat.ucla.edu/~handcock/RelDist. URL https://CRAN.R-project.org/package=reldist.
 }
 \author{
 Sizhong Yang <yanglzu@163.com>
