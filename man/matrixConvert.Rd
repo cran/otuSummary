@@ -33,9 +33,9 @@ The function returns long format of data frame, with 3 columns. The first two co
 Sizhong Yang <yanglzu@163.com>
 }
 \examples{
-data(varespec)  # A data frame in package vegan
-mat <- vegdist(varespec, method = "bray")
-mat.m <- matrixConvert(varespec, colname = c("sp1", "sp2", "bray"))
+data(otuqiime)
+mat <- calc_bc(t(otuqiime[,-ncol(otuqiime)]))
+mat.m <- matrixConvert(mat, colname = c("sp1", "sp2", "bray"))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

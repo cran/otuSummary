@@ -36,11 +36,10 @@ arguments to be passed to write.table().
 }
 }
 \details{
-The rare biosphere is defined by the relative abundance cutoffs (which is the "threshold" argument in this function) (Lynch and Neufeld, 2015). This function call the functions "specnumber", "diversity" and 'estimateR' from package 'vegan' (Oksanen et al, 2013), and the "gini" function from package 'reldist' (http://www.stat.ucla.edu/~handcock/RelDist). The function 'gini' from the package 'reldist' was extracted and this function can be correctly run without package dependency problem if you did not install this package. However, if you use the 'Gini' index result from this wrapped function, please cite the original package 'reldist'.
-In addition, please use the OTU table with integers to calculate alpha diversity.
+The rare biosphere is defined by the relative abundance cutoffs (which is the "threshold" argument in this function) (Lynch and Neufeld, 2015). This update (version 0.1.2) removed the dependencies on functions "specnumber", "diversity" and "estimateR" from the R package "vegan" (Oksanen et al, 2013), and removed the "gini" function from package 'reldist' (http://www.stat.ucla.edu/~handcock/RelDist).
 }
 \value{
-The function will return a list of length 3, including indices of observed, shannon, simpson, invsimpson, chao1, chao2, evenness and Gini.
+The function will return a list of length 3, including indices of observed, shannon, simpson, invsimpson, chao1, chao2, and evenness.
 %%  If it is a LIST, use
 \item{allBio }{The alpha diversity indices for the whole community}
 \item{abundBio }{The alpha diversity indices for the abundant population}
@@ -51,8 +50,6 @@ Lynch MDJ, Neufeld JD (2015). Ecology and exploration of the rare biosphere. Nat
 
 Oksanen J, Blanchet FG, Kindt R, Legendre P, Minchin PR, O'Hara RB et al (2013). vegan: Community Ecology Package. R package version 2.0-7. http://CRAN.R-project.org/package=vegan.
 
-Handcock MS (2016). Relative distribution methods. Version 1.6-6. Project home page at http:
-//www.stat.ucla.edu/~handcock/RelDist. URL https://CRAN.R-project.org/package=reldist.
 }
 \author{
 Sizhong Yang <yanglzu@163.com>
@@ -66,7 +63,7 @@ data(otumothur)
 test1 <- alphaDiversity(otutab = otumothur, siteInCol = TRUE,
     taxhead = "taxonomy", threshold = 1, percent = FALSE, write = FALSE)
 
-test2 <- alphaDiversity(otutab = otumothur[,-454], siteInCol = TRUE,
+test2 <- alphaDiversity(otutab = otumothur[,-ncol(otumothur)], siteInCol = TRUE,
     taxhead = NULL, threshold = 1, percent = FALSE, write = FALSE)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

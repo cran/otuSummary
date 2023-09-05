@@ -10,7 +10,7 @@ The function will summarize the frequency, abundance at given taxonomic level fo
 \usage{
 otuReport(otutab, siteInCol = TRUE, taxhead = "taxonomy", platform = "mothur",
     pattern = ";", prefix = TRUE, percent = FALSE, taxlevel = "phylum",
-    collap = "->")
+    collap = ";")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -86,11 +86,15 @@ summaryInfo[[1]]
 data(otumothur)
 
 summaryInfo <- otuReport(otutab = otumothur, siteInCol = TRUE, taxhead = "taxonomy",
-    platform = "qiime", pattern = ";", percent = FALSE, taxlevel = "phylum", collap = ";")
+    platform = "mothur", pattern = ";", percent = FALSE, taxlevel = "phylum", collap = ";")
 
 length(summaryInfo)
 names(summaryInfo)
 summaryInfo[[1]]
+
+op <- par(mar = c(8,6,2,1)+0.1)
+bplot(summaryInfo[["taxaFreqs"]])
+par(op)
 
 # summary otu table of relative abundance
 

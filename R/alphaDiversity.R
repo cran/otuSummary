@@ -1,5 +1,4 @@
-alphaDiversity <- function(otutab, siteInCol = FALSE, taxhead = NULL, threshold = 1,
-                           percent = FALSE, write = FALSE, ...){
+alphaDiversity <- function(otutab, siteInCol = FALSE, taxhead = NULL, threshold = 1, percent = FALSE, write = FALSE, ...){
   message("This function accepts data with Site in rows")
   if(siteInCol) {
     if(!is.null(taxhead)) {
@@ -12,29 +11,23 @@ alphaDiversity <- function(otutab, siteInCol = FALSE, taxhead = NULL, threshold 
       otutab = typeConvert(otutab = otutab,taxhead = NULL)
      } else otutab = otutab
   }
-  if(percent){warning("Percent data are risky to calculate alpha diversity indices!")
-    per <- otutab
-    } else {
+  if(!percent){
     per <- sweep(otutab, 1, rowSums(otutab),"/")*100
-  }
+  } else per <- otutab
 
-  comAll = otutab
-  abund = comAll[ , colMeans(per) >= threshold]
-  rare  = comAll[ , colMeans(per) < threshold ]
-  print(dim(abund))
-  print(dim(rare))
+  abund = per[ , colMeans(per) >= threshold]
+  rare  = per[ , colMeans(per) < threshold ]
 
-  data <- list(comAll, abund, rare)
+  data <- list(per, abund, rare)
   result <- vector("list",length = 3)
   result <- lapply(1:3, function(i) data.frame(
-    observed = specnumber(data[[i]]),
-    shannon = diversity(data[[i]], "shannon"),
-    simperson = diversity(data[[i]], "simpson"),
-    invsimperson = diversity(data[[i]], "invsimpson"),
-    chao1 = apply(data[[i]], 1, function(x) vegan::estimateR(x))[2,],
-    chao2 = apply(data[[i]], 1, function(x) chao2(x)),
-    evenness = diversity(data[[i]], "shannon")/specnumber(data[[i]]),
-    Gini = apply(data[[i]], 1, function(x) gini(x))
+    observed = apply(data[[i]], 1, function(x) sum(x>0)),
+    shannon = apply(data[[i]], 1, function(x) calc_shannon(data=x,base=exp(1))),
+    simperson = apply(data[[i]], 1, function(x) calc_simpson(data=x,index ='simpson')),
+    invsimperson = apply(data[[i]], 1, function(x) calc_simpson(data=x,index ='invsimpson')),
+    chao1 = apply(data[[i]], 1, function(x) calc_chao1(x)),
+    chao2 = apply(data[[i]], 1, function(x) calc_chao2(x)),
+    evenness = apply(data[[i]], 1, function(x) sum(x>0))/apply(data[[i]], 1, function(x) calc_shannon(data=x,base=exp(1)))
   ))
   names(result) = c("allBio","abundBio","rareBio")
   if(write){

@@ -11,7 +11,9 @@ threshold = 1, outype="Relabund", sort = TRUE, write = FALSE){
     message("There is one column given taxonomy in the data set.")
     count = otutab[,which(colnames(otutab) != taxhead)]
     tax = otutab[, which(colnames(otutab) == taxhead)]
-  } else {stop("The taxonomy marker is incorrect, please check it.")}
+    tax = levels(tax)[tax]
+  } else {stop("The taxonomy marker is incorrect, please check it")}
+
   if(!percent) {
     per = sweep(count, 2, colSums(count), "/")*100
     per[is.na(per)] <- 0
